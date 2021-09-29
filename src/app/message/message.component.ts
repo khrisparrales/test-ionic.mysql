@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { Message } from '../services/data.service';
+import { ApimysqlnodeService } from '../services/apimysqlnode.service';
 
 @Component({
   selector: 'app-message',
@@ -9,7 +11,9 @@ import { Message } from '../services/data.service';
 export class MessageComponent implements OnInit {
   @Input() message: Message;
 
-  constructor() { }
+  arrayPosts: any;
+  aPosts = [{ title: 'uno', id: 1 }];
+  constructor(public postServices: ApimysqlnodeService) {}
 
   ngOnInit() {}
 
@@ -17,4 +21,11 @@ export class MessageComponent implements OnInit {
     const win = window as any;
     return win && win.Ionic && win.Ionic.mode === 'ios';
   }
+
+  // getPosts() {
+  //   //llamamos a la funcion getPost de nuestro servicio.
+  //   this.postServices.getPosts().then((data) => {
+  //     this.arrayPosts = data;
+  //   });
+  // }
 }
